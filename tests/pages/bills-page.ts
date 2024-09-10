@@ -1,7 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 
-export class BillPage {
+export class BillsPage {
 
     readonly page: Page;
     readonly pageTitle: Locator;

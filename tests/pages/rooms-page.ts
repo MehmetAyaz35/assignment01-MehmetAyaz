@@ -24,10 +24,12 @@ export class RoomsPage{
     }
 
     async editRoom(){
+        await this.roomKebabMenuButton.click();
         await this.editRoomOption.click();
     }
 
     async deleteRoom(){
+        await this.roomKebabMenuButton.click();
         await this.deleteRoomOption.click();
     }
 } 
