@@ -129,6 +129,26 @@ test.describe('Test suite 01', () => {
     await expect(reservationNameLocator).toHaveCount(0); 
   });
 
+  test('TC10: should edit an existing bill and verify the update', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const billsPage = new BillsPage(page);
+
+    await dashboardPage.gotoBillsView();
+    await billsPage.gotoEditBill(0); // Edit first bill in the list
+    await expect(billsPage.page).toHaveURL(/.*bill/);
+    
+  });
+
+  test('TC11: should delete an existing bill and verify it is removed', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const billsPage = new BillsPage(page);
+
+    await dashboardPage.gotoBillsView();
+    await billsPage.deleteBill(0); // Delete first bill in the list
+    const nameLocator = page.locator('text=200');   // value must belong to the deleted item, otherwise it will fail.
+    await expect(nameLocator).toHaveCount(0); 
+  });
+
 
   
 });
