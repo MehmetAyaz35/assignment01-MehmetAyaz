@@ -4,7 +4,7 @@ export class ClientsPage {
   readonly page: Page;
   readonly pageHeading: Locator;
   readonly creatClientButton: Locator;
-  readonly clientKebabMenuButton: Locator;
+  readonly clientKebabMenuButtons: Locator;
   readonly editClientOption: Locator;
   readonly deleteClientOption: Locator;
   readonly backButton: Locator;
@@ -13,23 +13,29 @@ export class ClientsPage {
     this.page = page;
     this.pageHeading = page.getByText("Clients");
     this.creatClientButton = page.getByRole("link", { name: "Create Client" });
-    this.clientKebabMenuButton = page.getByRole("img").first();
+    this.clientKebabMenuButtons = page.getByRole("img");
     this.editClientOption = page.getByText("Edit");
-    this.deleteClientOption = page.getByText("Edit");
+    this.deleteClientOption = page.getByText("Delete");
     this.backButton = page.getByRole("link", { name: "Back" });
   }
 
-  async createClient() {
+  async gotoCreateClient() {
     await this.creatClientButton.click();
   }
 
-  async editClient() {
-    await this.clientKebabMenuButton.click();
+  // Select specific client
+  async gotoEditClient(index: number) {
+    await this.clientKebabMenuButtons.nth(index).click(); 
     await this.editClientOption.click();
   }
-
-  async deleteClient() {
-    await this.clientKebabMenuButton.click();
+  
+  // Select specific client
+  async deleteClient(index: number) {
+    await this.clientKebabMenuButtons.nth(index).click(); 
     await this.deleteClientOption.click();
+  }
+
+  async goBack(){
+    await this.backButton.click();
   }
 }

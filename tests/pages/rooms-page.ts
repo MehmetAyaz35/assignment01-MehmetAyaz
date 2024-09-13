@@ -4,7 +4,7 @@ export class RoomsPage{
     readonly page: Page;
     readonly pageHeading: Locator;
     readonly createRoomButton: Locator;
-    readonly roomKebabMenuButton: Locator;
+    readonly roomKebabMenuButtons: Locator;
     readonly editRoomOption: Locator;
     readonly deleteRoomOption: Locator;
     readonly backButton: Locator;
@@ -13,7 +13,7 @@ export class RoomsPage{
         this.page = page;
         this.pageHeading = page.getByText('Rooms');
         this.createRoomButton  = page.getByRole('link', { name: 'Create Room' });
-        this.roomKebabMenuButton  = page.getByRole('img').first();
+        this.roomKebabMenuButtons  = page.getByRole('img');
         this.editRoomOption  = page.getByText('Edit');
         this.deleteRoomOption  = page.getByText('Delete');
         this.backButton  = page.getByRole('link', { name: 'Back' });
@@ -23,13 +23,18 @@ export class RoomsPage{
         await this.createRoomButton.click();
     }
 
-    async editRoom(){
-        await this.roomKebabMenuButton.click();
+    async gotoEditRoom(index: number){
+        await this.roomKebabMenuButtons.nth(index).click();
         await this.editRoomOption.click();
     }
 
-    async deleteRoom(){
-        await this.roomKebabMenuButton.click();
+    async deleteRoom(index: number){
+        await this.roomKebabMenuButtons.nth(index).click();
         await this.deleteRoomOption.click();
     }
+
+    async goBack(){
+        await this.backButton.click();
+    }
+
 } 

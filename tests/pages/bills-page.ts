@@ -5,7 +5,8 @@ export class BillsPage {
 
     readonly page: Page;
     readonly pageTitle: Locator;
-    readonly billOptionsButton: Locator;
+    readonly createBill: Locator;
+    readonly billKebabMenuButtons: Locator;
     readonly editBillButton: Locator;
     readonly deleteBillButton: Locator;
     readonly backButton: Locator;
@@ -14,19 +15,24 @@ export class BillsPage {
 constructor(page: Page){
     this.page = page;
     this.pageTitle = page.getByText('Bills');
-    this.billOptionsButton = page.getByRole('img').first();
+    this.createBill = page.getByRole('link', { name: 'Create Bill' });
+    this.billKebabMenuButtons = page.getByRole('img');
     this.editBillButton = page.getByText('Edit');
     this.deleteBillButton = page.getByText('Delete');
     this.backButton = page.getByRole('link', { name: 'Back' });
 }
 
-async gotoEditBill(){
-    await this.billOptionsButton.click();
+async gotoCreateBill(){
+    await this.createBill.click();
+}
+
+async gotoEditBill(index: number){
+    await this.billKebabMenuButtons.nth(index).click();
     await this.editBillButton.click();
 }
 
-async deleteBill(){
-    await this.billOptionsButton.click();
+async deleteBill(index: number){
+    await this.billKebabMenuButtons.nth(index).click();
     await this.deleteBillButton.click();
 }
 
