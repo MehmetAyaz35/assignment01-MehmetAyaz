@@ -149,6 +149,27 @@ test.describe('Test suite 01', () => {
     await expect(nameLocator).toHaveCount(0); 
   });
 
+  test('TC12: should validate that the "Back" button on the rooms page navigates to the dashboard', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const roomsPage = new RoomsPage(page);
+
+    await dashboardPage.gotoRoomsView();
+    await roomsPage.goBack();
+    await expect(dashboardPage.pageHeading).toBeVisible(); // Validate return to dashboard
+  });
+
+
+  test('TC13: should delete an existing room and verify it is removed', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const roomsPage = new RoomsPage(page);
+    
+    await dashboardPage.gotoRoomsView();
+    await roomsPage.deleteRoom(1); 
+
+    const roomLocator = page.locator('text="Room 101"'); 
+    await expect(roomLocator).toHaveCount(0);
+  });
+
 
   
 });
