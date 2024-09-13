@@ -85,6 +85,28 @@ test.describe('Test suite 01', () => {
     await expect(roomsPage.page).toHaveURL(/.*rooms/);
   });
 
+  test('TC06: should edit an existing client and verify the update', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const clientsPage = new ClientsPage(page);
+
+    await dashboardPage.gotoClientsView();
+    await clientsPage.gotoEditClient(0); // Edit first client in the list
+    await clientsPage.goBack();
+    await expect(clientsPage.page).toHaveURL(/.*clients/);
+  });
+
+  test('TC07: should delete an existing client and verify it is removed', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const clientsPage = new ClientsPage(page);
+
+    await dashboardPage.gotoClientsView();
+    await clientsPage.deleteClient(0); 
+
+    const clientNameLocator = page.locator('text=Jonas Hellman'); 
+    await expect(clientNameLocator).toHaveCount(0);
+    
+  });
+
 
   
 });
