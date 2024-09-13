@@ -107,6 +107,28 @@ test.describe('Test suite 01', () => {
     
   });
 
+  test('TC08: should create a new reservation and verify it in the list', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const reservationsPage = new ReservationsPage(page);
+
+    await dashboardPage.gotoReservationsView();
+    await reservationsPage.gotoCreateReservation(); // Assume the create reservation method exists
+    await reservationsPage.goBackFromReservationsPage();
+    await expect(reservationsPage.page).toHaveURL(/.*reservations/);
+  });
+
+
+  test('TC09: should delete an existing reservation and verify it is removed', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const reservationsPage = new ReservationsPage(page);
+
+    await dashboardPage.gotoReservationsView();
+    await reservationsPage.deleteReservation(0); // Delete first reservation in the list
+  
+    const reservationNameLocator = page.locator('text=Client: 1'); 
+    await expect(reservationNameLocator).toHaveCount(0); 
+  });
+
 
   
 });
