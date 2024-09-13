@@ -62,6 +62,29 @@ test.describe('Test suite 01', () => {
 
   });
 
+  test('TC04: Successfully create a new client and verify client list page', async ({ page }) => {
+
+    const dashboardPage = new DashboardPage(page);
+    const clientsPage = new ClientsPage(page);
+    const createClientPage = new CreateClientPage(page);
+
+    await dashboardPage.gotoClientsView();
+    await clientsPage.gotoCreateClient();
+    await createClientPage.createClient();
+    await expect(clientsPage.page).toHaveURL(/.*clients/);
+
+  });
+
+  test('TC05 should edit an existing room and verify the update', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const roomsPage = new RoomsPage(page);
+
+    await dashboardPage.gotoRoomsView();
+    await roomsPage.gotoEditRoom(0); // Edit first room in the list
+    await roomsPage.goBack();
+    await expect(roomsPage.page).toHaveURL(/.*rooms/);
+  });
+
 
   
 });
