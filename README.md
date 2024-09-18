@@ -24,7 +24,7 @@ To run these tests, ensure the following:
 2. **Navigate to the project directory**:
 
 ```bash
-cd [directory-name]
+cd assignment01-MehmetAyaz
  ```
 3. **Install project dependencies**:
 
@@ -67,7 +67,7 @@ npx playwright test --browser=chromium
 This test suite utilizes Faker.js to generate randomized test data, ensuring the robustness and variability of test cases. For example, client names, emails, and telephone numbers are all randomly generated.
 
 ## Environment Management with dotenv
-We use the .env file to manage environment variables, such as BASE_URL, USERNAME, and PASSWORD. Ensure you define your environment variables correctly before running the tests.
+I use the .env file to manage environment variables, such as BASE_URL, USERNAME, and PASSWORD. Ensure you define your environment variables correctly before running the tests.
 
 Example .env File
 ```bash

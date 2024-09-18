@@ -1,5 +1,4 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-// import { faker, Faker, th } from '@faker-js/faker';
 import { faker } from '@faker-js/faker';
 
 
@@ -35,8 +34,8 @@ export class CreateRoomPage {
     const roomNumber = faker.number.int({ min: 100, max: 999 }).toString();
     const floorNumber = faker.number.int({ min: 1, max: 10 }).toString();
     const price = faker.commerce.price({ min: 100, max: 200, dec: 0 }); 
-    const categoryIndex = faker.number.int({ min: 1, max: 3 });
-    const featureIndex = faker.number.int({ min: 1, max: 4 }); 
+    const categoryIndex = faker.number.int({ min: 1, max: 2 });
+    const featureIndex = faker.number.int({ min: 1, max: 3 }); 
 
     await this.categoryOptionsField.selectOption({ index: categoryIndex });
     await this.roomNumberTextField.fill(roomNumber);
@@ -47,5 +46,5 @@ export class CreateRoomPage {
 
 
   }
-
+ 
 }
