@@ -19,12 +19,12 @@ To run these tests, ensure the following:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/MehmetAyaz35/assignment01-MehmetAyaz.git
+   git clone https://github.com/MehmetAyaz35/assignment01-mehmetayaz.git
    ```
 2. **Navigate to the project directory**:
 
 ```bash
-cd assignment01-MehmetAyaz
+cd assignment01-mehmetayaz
  ```
 3. **Install project dependencies**:
 
